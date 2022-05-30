@@ -169,6 +169,9 @@ html, body {
   margin-right: 8%;
   transition: 0.3s;
 }
+.robot-face:hover {
+  cursor: pointer;
+}
 
 .robot-eyes {
   position: relative;
