@@ -1,0 +1,508 @@
+$min-width: 700px;
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #B4CDCD;
+}
+
+.float-menu {
+  position: fixed;
+  width: 70px;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  @media (max-width: $min-width) {
+    display: block;
+  }
+}
+
+// container
+.container {
+  position: relative;
+  width: 100%;
+  .container-left {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  .container-right {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 20;
+    background-color: #fff;
+    @media (max-width: $min-width) {
+      width: 80%;
+      right: -80%;
+    }
+  }
+  &.show {
+    .container-right {
+      right: 0px;
+      transition: 0.3s;
+    }
+  }
+}
+
+// menu
+.menu-wrapper {
+  position: relative;
+  width: calc(100% - 30px);
+  padding: 15px;
+  .button {
+    margin-top: 10px;
+  }
+}
+
+// form 
+.button {
+  position: relative;
+  width: calc(100% - 2px);
+  padding: 12px 0;
+  background-color: #fff;
+  border: 1px #0D4F8B solid;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.2s;
+  &.active {
+    background-color: #0D4F8B;
+    color: #fff;
+    transition: 0.2s;
+  }
+  &:hover {
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  &:disabled {
+    background-color: #f5f5f5;
+    color: #555;
+    border-color: #999;
+    cursor: not-allowed;
+  }
+}
+
+// robot container
+.robot-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: scale(1.0);
+  &.shutdown {
+    .robot-eyes {
+      display: none;
+      transition: 0.3s;
+    }
+    .robot-hand {
+      &#hand-left {
+        top: 35px;
+        left: 15px;
+        transform: rotate(-10deg);
+        transition: 0.3s;
+      }
+      &#hand-right {
+        top: 35px;
+        right: 15px;
+        transform: rotate(10deg);
+        transition: 0.3s;
+      }
+    }
+    .robot-body {
+      margin-top: -74px;
+      transition: 0.3s;
+    }
+  }
+  @media (max-width: $min-width) {
+    transform: scale(0.7);
+  }
+}
+
+.robot-head {
+  position: relative;
+  width: 280px;
+  height: 190px;
+  background-color: #fff;
+  border-radius: 270px 270px 80px 80px;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.robot-face {
+  position: relative;
+  top: 18%;
+  left: 15%;
+  width: 200px;
+  height: 140px;
+  background-color: #000;
+  border-radius: 300px 300px 120px 120px / 300px 300px 90px 90px;
+  transition: 0.3s;
+  &.look-ahead {
+    left: 15%;
+    transition: 0.3s;
+  }
+  &.look-left {
+    left: 2%;
+    transition: 0.3s;
+    .robot-eyes {
+      #eye-left {
+        margin-left: 10%;
+        transition: 0.3s;
+      }
+      #eye-right {
+        margin-right: 16%;
+        transition: 0.3s;
+      }
+    }
+  }
+  &.look-right {
+    left: 27%;
+    transition: 0.3s;
+    .robot-eyes {
+      #eye-left {
+        margin-left: 18%;
+        transition: 0.3s;
+      }
+      #eye-right {
+        margin-right: 8%;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+// robot eyes
+.robot-eyes {
+  position: relative;
+  top: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.3s;
+  .eye {
+    width: 60px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #67E6EC;
+  }
+  .eye-animation {
+    animation: blink 0.8s linear infinite alternate;
+  }
+  #eye-left {
+    margin-left: 13%;
+    transform: rotate(8deg);
+    transition: 0.3s;
+  }
+  #eye-right {
+    margin-right: 13%;
+    transform: rotate(-8deg);
+    transition: 0.3s;
+  }
+
+  // eye position
+  &.look-ahead {
+    top: 40%;
+  }
+  &.look-up {
+    top: 20%;
+  }
+  &.look-down {
+    top: 60%;
+  }
+
+  // angry
+  &.angry {
+    top: 50%;
+    transition: 0.3s;
+    #eye-left {
+      height: 25px;
+      transform: rotate(15deg);
+      transition: 0.3s;
+    }
+    #eye-right {
+      height: 25px;
+      transform: rotate(-15deg);
+      transition: 0.3s;
+    }
+    // eye position
+    &.look-ahead {
+      top: 50%;
+    }
+    &.look-up {
+      top: 25%;
+    }
+    &.look-down {
+      top: 65%;
+    }
+  }
+
+  // suprised
+  &.supprised {
+    top: 32%;
+    transition: 0.3s;
+    #eye-left {
+      height: 60px;
+      transform: rotate(12deg);
+      transition: 0.3s;
+    }
+    #eye-right {
+      height: 60px;
+      transform: rotate(-12deg);
+      transition: 0.3s;
+    }
+    // eye position
+    &.look-ahead {
+      top: 32%;
+    }
+    &.look-up {
+      top: 15%;
+    }
+    &.look-down {
+      top: 50%;
+    }
+  }
+
+  // mood
+  &.mood {
+    top: 50%;
+    transition: 0.3s;
+    .eye {
+      border-radius: 10px;
+    }
+    #eye-left {
+      height: 20px;
+      transform: rotate(0deg);
+      transition: 0.3s;
+    }
+    #eye-right {
+      height: 20px;
+      transform: rotate(-0deg);
+      transition: 0.3s;
+    }
+    // eye position
+    &.look-ahead {
+      top: 50%;
+    }
+    &.look-up {
+      top: 30%;
+    }
+    &.look-down {
+      top: 70%;
+    }
+  }
+
+  // happy
+  &.happy {
+    top: 45%;
+    transition: 0.3s;
+    .eye {
+      border-radius: 100%;
+      border: 12.5px #67E6EC solid;
+      border-bottom-color: rgba($color: #000000, $alpha: 0);
+      border-left-color: rgba($color: #000000, $alpha: 0);
+      background-color: rgba($color: #000000, $alpha: 0);
+      transition: 0.3s;
+    }
+    .eye-animation {
+      animation: blinkBorder 0.8s linear infinite alternate;
+    }
+    #eye-left {
+      width: 35px;
+      height: 35px;
+      transform: rotate(-45deg);
+      transition: 0.3s;
+    }
+    #eye-right {
+      width: 35px;
+      height: 35px;
+      transform: rotate(-45deg);
+      transition: 0.3s;
+    }
+    // eye position
+    &.look-ahead {
+      top: 45%;
+    }
+    &.look-up {
+      top: 20%;
+    }
+    &.look-down {
+      top: 60%;
+    }
+  }
+}
+
+// robot body
+.robot-body {
+  position: relative;
+  margin-top: 12px;
+  width: 280px;
+  height: 370px;
+  background-color: #fff;
+  border-radius: 20px 20px 150px 150px / 20px 20px 320px 320px;
+  transition: 0.3s;
+  &.angry {
+    margin-top: 5px;
+    transition: 0.3s;
+  }
+  &.supprised {
+    margin-top: 20px;
+    transition: 0.3s;
+  }
+  &.mood {
+    margin-top: 25px;
+    transition: 0.3s;
+  }
+  &.happy {
+    margin-top: 0px;
+    transition: 0.3s;
+  }
+}
+
+// robot hand
+.robot-hand {
+  width: 30px;
+  height: 270px;
+  background-color: #fff;
+  border-radius:100%;
+  &#hand-left {
+    position: absolute;
+    top: 35px;
+    left: -50px;
+    transform: rotate(8deg);
+    transition: 0.3s;
+  }
+  &#hand-right {
+    position: absolute;
+    top: 35px;
+    right: -50px;
+    transform: rotate(-8deg);
+    transition: 0.3s;
+  }
+  &.angry {
+    &#hand-left {
+      top: -30px;
+      left: -38px;
+      transform: rotate(3deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: -30px;
+      right: -38px;
+      transform: rotate(-3deg);
+      transition: 0.3s;
+    }
+  }
+  &.supprised {
+    &#hand-left {
+      top: 25px;
+      left: -70px;
+      transform: rotate(25deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: 25px;
+      right: -70px;
+      transform: rotate(-25deg);
+      transition: 0.3s;
+    }
+  }
+  &.mood {
+    &#hand-left {
+      top: 60px;
+      left: -38px;
+      transform: rotate(1deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: 60px;
+      right: -38px;
+      transform: rotate(-1deg);
+      transition: 0.3s;
+    }
+  }
+  &.happy {
+    &#hand-left {
+      top: -30px;
+      left: -48px;
+      transform: rotate(15deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: -30px;
+      right: -48px;
+      transform: rotate(-15deg);
+      transition: 0.3s;
+    }
+  }
+}
+
+.robot-wrapper {
+  position: relative;
+  width: 280px;
+  margin: auto;
+  &.active {
+    animation: wrapper-active-animation 2.5s infinite;
+  }
+}
+
+// animation
+@keyframes wrapper-active-animation {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -40px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes blink{
+  0%{
+    background-color: blue;
+  }
+  50%{
+    background-color: #79CDCD;
+  }
+  70%{
+    background-color: #70DBDB;
+  }
+  100%{
+    background-color: darkturquoise;
+  }
+}
+@keyframes blinkBorder{
+  0%{
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-color: blue;
+    border-left-color: rgba($color: #000000, $alpha: 0);
+    border-bottom-color: rgba($color: #000000, $alpha: 0);
+  }
+  50%{
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-color: #79CDCD;
+    border-left-color: rgba($color: #000000, $alpha: 0);
+    border-bottom-color: rgba($color: #000000, $alpha: 0);
+  }
+  70%{
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-color: #70DBDB;
+    border-left-color: rgba($color: #000000, $alpha: 0);
+    border-bottom-color: rgba($color: #000000, $alpha: 0);
+  }
+  100%{
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-color: darkturquoise;
+    border-left-color: rgba($color: #000000, $alpha: 0);
+    border-bottom-color: rgba($color: #000000, $alpha: 0);
+  }
+}
