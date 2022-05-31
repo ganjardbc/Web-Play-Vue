@@ -165,7 +165,6 @@ export default {
   },
   mounted() {
     // this.onAutomateExpression()
-    this.powerStatus = true
   },
   methods: {
     onAutomateExpression() {
