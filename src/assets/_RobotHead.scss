@@ -1,0 +1,55 @@
+.robot-head {
+  position: relative;
+  width: 280px;
+  height: 190px;
+  background-color: #fff;
+  border-radius: 270px 270px 80px 80px;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.robot-face {
+  position: relative;
+  top: 18%;
+  left: 15%;
+  width: 200px;
+  height: 140px;
+  background-color: #000;
+  border-radius: 300px 300px 120px 120px / 300px 300px 90px 90px;
+  transition: 0.3s;
+  &.look-ahead {
+    left: 15%;
+    transition: 0.3s;
+  }
+  &.look-left {
+    left: 2%;
+    transition: 0.3s;
+    .robot-eyes {
+      #eye-left {
+        margin-left: 10%;
+        transition: 0.3s;
+      }
+      #eye-right {
+        margin-right: 16%;
+        transition: 0.3s;
+      }
+    }
+  }
+  &.look-right {
+    left: 27%;
+    transition: 0.3s;
+    .robot-eyes {
+      #eye-left {
+        margin-left: 18%;
+        transition: 0.3s;
+      }
+      #eye-right {
+        margin-right: 8%;
+        transition: 0.3s;
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

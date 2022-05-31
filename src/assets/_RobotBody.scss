@@ -1,0 +1,26 @@
+// robot body
+.robot-body {
+  position: relative;
+  margin-top: 12px;
+  width: 280px;
+  height: 370px;
+  background-color: #fff;
+  border-radius: 20px 20px 150px 150px / 20px 20px 320px 320px;
+  transition: 0.3s;
+  &.angry {
+    margin-top: 5px;
+    transition: 0.3s;
+  }
+  &.supprised {
+    margin-top: 20px;
+    transition: 0.3s;
+  }
+  &.mood {
+    margin-top: 25px;
+    transition: 0.3s;
+  }
+  &.happy {
+    margin-top: 0px;
+    transition: 0.3s;
+  }
+}

@@ -1,0 +1,77 @@
+// robot hand
+.robot-hand {
+  width: 30px;
+  height: 270px;
+  background-color: #fff;
+  border-radius:100%;
+  &#hand-left {
+    position: absolute;
+    top: 35px;
+    left: -50px;
+    transform: rotate(8deg);
+    transition: 0.3s;
+  }
+  &#hand-right {
+    position: absolute;
+    top: 35px;
+    right: -50px;
+    transform: rotate(-8deg);
+    transition: 0.3s;
+  }
+  &.angry {
+    &#hand-left {
+      top: -30px;
+      left: -38px;
+      transform: rotate(3deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: -30px;
+      right: -38px;
+      transform: rotate(-3deg);
+      transition: 0.3s;
+    }
+  }
+  &.supprised {
+    &#hand-left {
+      top: 25px;
+      left: -70px;
+      transform: rotate(25deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: 25px;
+      right: -70px;
+      transform: rotate(-25deg);
+      transition: 0.3s;
+    }
+  }
+  &.mood {
+    &#hand-left {
+      top: 60px;
+      left: -38px;
+      transform: rotate(1deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: 60px;
+      right: -38px;
+      transform: rotate(-1deg);
+      transition: 0.3s;
+    }
+  }
+  &.happy {
+    &#hand-left {
+      top: -30px;
+      left: -48px;
+      transform: rotate(15deg);
+      transition: 0.3s;
+    }
+    &#hand-right {
+      top: -30px;
+      right: -48px;
+      transform: rotate(-15deg);
+      transition: 0.3s;
+    }
+  }
+}
