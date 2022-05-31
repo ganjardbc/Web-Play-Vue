@@ -12,10 +12,16 @@
         <div :class="`robot-container ${!powerStatus && 'shutdown'}`">
           <div :class="`robot-wrapper ${wrapperAnimation && 'active'}`">
             <div class="robot-head">
-              <div :class="`robot-face ${facePosition}`" @click="changePowerStatus">
+              <div 
+                :class="`robot-face ${facePosition}`" 
+                @click="changePowerStatus">
                 <div :class="`robot-eyes ${expression} ${eyePosition}`">
-                  <div :class="`eye ${eyeAnimation && 'eye-animation'}`" id="eye-left"></div>
-                  <div :class="`eye ${eyeAnimation && 'eye-animation'}`" id="eye-right"></div>
+                  <div 
+                    :class="`eye ${eyeAnimation && 'eye-animation'}`" 
+                    id="eye-left"></div>
+                  <div 
+                    :class="`eye ${eyeAnimation && 'eye-animation'}`" 
+                    id="eye-right"></div>
                 </div>
               </div>
             </div>
@@ -159,6 +165,7 @@ export default {
   },
   mounted() {
     // this.onAutomateExpression()
+    this.powerStatus = true
   },
   methods: {
     onAutomateExpression() {
